@@ -70,6 +70,10 @@ pub async fn check(request: HttpRequest) -> impl Responder {
             path
         );
         if let Some(location) = redirect_location {
+            info!(
+                "Redirecting to {}",
+                location
+            );
             HttpResponse::SeeOther()
                 .header(actix_web::http::header::LOCATION, location.to_owned())
                 .take()
